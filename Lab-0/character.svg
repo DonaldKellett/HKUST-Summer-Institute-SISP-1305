@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!--
+    My First SVG File
+
+    Welcome to the source code of my very first SVG File!  I sure am excited, are you?
+    In this SVG file I will create a 'character' which will (hopefully) represent a cartoon human being, although this is not guaranteed ;)
+    I typed this file from scratch (i.e. I did not use SVG editing tools such as SVG Edit or Inkscape) so hope you understand if the quality of the image is below average.
+    (c) Donald Leung.  All rights reserved.
+
+    P.S. I have a sneaking suspicion that SVG is a part of XML.  Am I right?
+  -->
+
+  <g id="my-character">
+    <!-- My character is made of a combination of basic shapes - hence I'm going to group it up using the <g> tag.  The "id" attribute is for Javascript/Python manipulation (I still am not sure which coding language we'll be using) -->
+    <!--
+      Instructions:
+        - Drag this file into the browser to view the SVG Picture!
+
+      Enjoy my "Stick Man"! :p
+    -->
+
+    <!-- Head Components (grouped together so entire head can be controlled) -->
+    <g id="head">
+      <circle cx="200" cy="150" r="100" style="fill: #ffe9b3; stroke: black;" />
+      <circle cx="165" cy="110" r="10" style="fill: black; stroke: black;" />
+      <circle cx="235" cy="110" r="10" style="fill: black; stroke: black;" />
+      <path d="M 190 140 L 210 140 L 215 175 L 185 175 z" style="fill: #ffe9b3; stroke: black;" />
+      <path d="M 150 200 L 160 215 L 170 225 L 180 230 L 190 232.5 L 200 235 L 210 232.5 L 220 230 L 230 225 L 240 215 L 250 200 z" style="fill: red; stroke: black;" />
+      <path d="M 190 210 L 210 210 L 210 230 L 209 235 L 208 239 L 206 242 L 203 245 L 200 246 L 197 245 L 194 242 L 192 239 L 191 235 L 190 230 z" style="fill: pink; stroke: black;" />
+      <line x1="200" y1="215" x2="200" y2="240" style="stroke: black;" />
+    </g>
+
+    <!-- Other Components (not grouped together - each component should be controlled individually) -->
+    <!-- Body -->
+    <line x1="200" y1="250" x2="200" y2="450" style="stroke: black;" />
+    <!-- Arms -->
+    <line x1="200" y1="250" x2="125" y2="325" style="stroke: black;" />
+    <line x1="200" y1="250" x2="275" y2="325" style="stroke: black;" />
+    <!-- Legs -->
+    <line x1="200" y1="450" x2="125" y2="525" style="stroke: black;" />
+    <line x1="200" y1="450" x2="275" y2="525" style="stroke: black;" />
+  </g>
+
+</svg>
