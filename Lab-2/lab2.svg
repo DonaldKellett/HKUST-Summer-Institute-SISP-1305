@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     onload="do_game()" >
+	 
+	<!--
+		lab2.svg
+		Javascript Number Guessing Game
+		
+		(c) Donald Leung.  All rights reserved.
+	-->
+
+<script>
+
+<![CDATA[
+
+
+// These are variables for storing numbers
+var target;             // We will store the number to be guessed here
+var guess_input_text;   // We will store text in here
+var guess_input;        // We will store a number in here
+var finished = false;   // This is true if the game has finished
+
+
+// Do the game loop
+function do_game() {
+
+        target = Math.round(99 * Math.random()) + 1;
+		
+		// Alert target number to test code
+		// alert(target);
+
+
+        // do the main game loop
+
+        while (!finished) {
+			guess_input_text = prompt("Enter a number between 1 and 100.");
+			guess_input = parseInt(guess_input_text);
+			check_guess();
+		}
+
+        alert("Correct!  The mystery number is " + target + "!");
+}
+
+
+// Check the user's guess
+function check_guess() {
+
+// you need to add some code here
+
+// this function will check the number entered by the user
+
+// if the number is correct, this function returns True
+
+// if the number is not correct, this function returns False
+
+	if (guess_input === target) {
+		// The player has guessed the number correctly
+		finished = true;
+	} else {
+		if (isNaN(guess_input)) {
+			alert("Please enter a number.");
+		} else if (guess_input < 1 || guess_input > 100) {
+			alert("Please enter a number between 1 and 100.");
+		} else {
+			if (guess_input < target) {
+				alert("Your number is too small.  Try again.");
+			} else {
+				alert("Your number is too large.  Try again.");
+			}
+		}
+	}
+}
+
+
+]]>
+
+</script>
+
+<!--
+The JavaScript game is executed as soon as the web page is loaded.
+
+You can add some pretty SVG here, if you want to -
+but in this lab project the game doesn't need any graphics.
+
+-->
+
+
+</svg>
