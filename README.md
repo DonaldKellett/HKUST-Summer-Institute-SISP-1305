@@ -9,4 +9,4 @@ According to the professor/course instructor *Dr. Gibson*, the following coding 
  - SVG
  - Python
 
-However, later on during the first lesson, *Dr. Gibson* stated that SVG files can be manipulated using Javascript, so at the moment I am not sure whether Python or Javascript will be taught in the course.  Either way, I will learn new stuff during this Summer Programme since SVG files are new to me.
+However, later on during the first lesson, *Dr. Gibson* stated that SVG files can be manipulated using Javascript, so I was not sure whether Python or Javascript would be taught in the course.  In Lab 2, the answer was finally revealed - we were being taught Javascript instead.
