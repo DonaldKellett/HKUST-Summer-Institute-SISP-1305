@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="background-color: rgb(5, 234, 255);">
+  <!--
+    proto.svg
+    Game Prototype
+    For Testing Purposes Only
+    (c) HKUST Summer Institute SISP 1305 Group 1.  All rights reserved.
+  -->
+
+  <!--
+    Background for proto.svg
+    Would be jointly handled by Timmy and John
+    (c) Timmy and John.  All rights reserved.
+  -->
+  <script>
+    <![CDATA[
+      /*
+        JS Code for proto.svg
+        Created by Donald Leung
+        (c) Donald Leung.  All rights reserved.
+      */
+    ]]>
+  </script>
+
+  <!--
+    Characters for proto.svg
+    Would be handled by Bill
+    (c) Bill.  All rights reserved.
+  -->
+  <g id="player">
+    <!-- Haha, super simple SVG Character -->
+    <circle cx="100" cy="575" r="75" style="fill: #ffe9b3; stroke: black;" />
+    <circle cx="125" cy="545" r="8" style="fill: black; stroke: black;" />
+    <path d="M 150 615 L 100 615" style="stroke: black;" />
+  </g>
+  <circle class="obst" cx="1250" cy="600" r="50" style="fill: red; stroke: black;" />
+  <circle class="obst" cx="1250" cy="600" r="50" style="fill: blue; stroke: black;" />
+  <circle class="obst" cx="1250" cy="600" r="50" style="fill: green; stroke: black;" />
+</svg>
