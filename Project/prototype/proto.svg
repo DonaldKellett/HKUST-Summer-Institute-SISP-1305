@@ -29,8 +29,8 @@
           alert("You will be returned to the homepage.");
           window.location = "http://donaldkellett.github.io/HKUST-Summer-Institute-SISP-1305";
         } else {
-          pox = document.getElementById("playerHead").getAttribute("cx");
-          poy = document.getElementById("playerHead").getAttribute("cy");
+          pox = parseInt(document.getElementById("playerHead").getAttribute("cx"));
+          poy = parseInt(document.getElementById("playerHead").getAttribute("cy"));
           player = {
             isJumping: false,
             group: document.getElementById("player"),
@@ -42,7 +42,7 @@
                   pTranslate -= 10;
                   player.group.setAttribute("transform", "translate(0 " + pTranslate + ")");
                   pcx = pox;
-                  pcy = parseInt(poy) + pTranslate;
+                  pcy = poy + pTranslate;
                   // alert("("+pcx+","+pcy+")");
                 }, 50 * i);
               }
@@ -51,7 +51,7 @@
                   pTranslate += 10;
                   player.group.setAttribute("transform", "translate(0 " + pTranslate + ")");
                   pcx = pox;
-                  pcy = parseInt(poy) + pTranslate;
+                  pcy = poy + pTranslate;
                   // alert("("+pcx+","+pcy+")");
                 }, 50 * i + 1500);
               }
