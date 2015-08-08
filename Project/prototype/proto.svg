@@ -21,20 +21,172 @@
         (c) Donald Leung.  All rights reserved.
       */
 
-      var i, ur, pox, poy, pcx, pcy, player, pTranslate, obst1, obst2, obst3;
+      var i, ur, pox, poy, pcx, pcy, player, pTranslate, obst1, obst2, obst3, t = 0, seconds = 0, minutes = 0, hours = 0, timeInterval;
 
       function init() {
-        obst1 = new Obstacle(document.getElementById("obst1"));
-        obst2 = new Obstacle(document.getElementById("obst2"));
-        obst3 = new Obstacle(document.getElementById("obst3"));
-        // alert(obst1.r);
-        // alert(obst2.r);
-        // alert(obst3.r);
+        obst1 = new Obstacle(document.getElementById("obst1"), 15);
+        obst2 = new Obstacle(document.getElementById("obst2"), 15);
+        obst3 = new Obstacle(document.getElementById("obst3"), 15);
+        obst1.setPos = function() {
+          obst1.x = 1250;
+          obst1.y = 600;
+          obst1.svgEquiv.setAttribute("cx", obst1.x);
+          obst1.svgEquiv.setAttribute("cy", obst1.y);
+          setTimeout(function() {
+            obst1.svgEquiv.setAttribute("visibility", "visible");
+            obst1.move();
+          }, 10000 * Math.random());
+        }
+        obst2.setPos = function() {
+          obst2.x = 1250;
+          obst2.y = 600;
+          obst2.svgEquiv.setAttribute("cx", obst2.x);
+          obst2.svgEquiv.setAttribute("cy", obst2.y);
+          setTimeout(function() {
+            obst2.svgEquiv.setAttribute("visibility", "visible");
+            obst2.move();
+          }, 10000 * Math.random());
+        }
+        obst3.setPos = function() {
+          obst3.x = 1250;
+          obst3.y = 600;
+          obst3.svgEquiv.setAttribute("cx", obst3.x);
+          obst3.svgEquiv.setAttribute("cy", obst3.y);
+          setTimeout(function() {
+            obst3.svgEquiv.setAttribute("visibility", "visible");
+            obst3.move();
+          }, 10000 * Math.random());
+        }
+        obst1.move = function() {
+          obst1.x -= obst1.v;
+          obst1.svgEquiv.setAttribute("cx", obst1.x);
+          // Collision handler
+          if ((pcx - obst1.x) * (pcx - obst1.x) + (pcy - obst1.y) * (pcy - obst1.y) <= (75 + obst1.r) * (75 + obst1.r)) {
+            // If player collides with Obstacle 1, end the game
+            player.group.setAttribute("visibility", "hidden");
+            obst1.svgEquiv.setAttribute("visibility", "hidden");
+            obst2.svgEquiv.setAttribute("visibility", "hidden");
+            obst3.svgEquiv.setAttribute("visibility", "hidden");
+            clearTimeout(timeInterval);
+            player.jump = function() {return undefined;}
+            if (t < 60) {
+              document.getElementById("endGame").textContent = "You have survived for " + seconds + " seconds.  Good job!";
+            } else if (t >= 60 && t < 3600) {
+              document.getElementById("endGame").textContent = "You have survived for " + minutes + " minutes and " + seconds + " seconds.  Good job!";
+            } else {
+              document.getElementById("endGame").textContent = "You have survived for " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds.  Excellent!";
+            }
+          } else {
+            if (obst1.x <= 0) {
+              obst1.svgEquiv.setAttribute("visibility", "hidden");
+              obst1.setPos();
+            } else {
+              setTimeout(function() {
+              obst1.move();
+              }, 50);
+            }
+          }
+        }
+        obst2.move = function() {
+          obst2.x -= obst2.v;
+          obst2.svgEquiv.setAttribute("cx", obst2.x);
+          // Collision handler
+          if ((pcx - obst2.x) * (pcx - obst2.x) + (pcy - obst2.y) * (pcy - obst2.y) <= (75 + obst2.r) * (75 + obst2.r)) {
+            // If player collides with Obstacle 2, end the game
+            player.group.setAttribute("visibility", "hidden");
+            obst1.svgEquiv.setAttribute("visibility", "hidden");
+            obst2.svgEquiv.setAttribute("visibility", "hidden");
+            obst3.svgEquiv.setAttribute("visibility", "hidden");
+            clearTimeout(timeInterval);
+            player.jump = function() {return undefined;}
+            if (t < 60) {
+              document.getElementById("endGame").textContent = "You have survived for " + seconds + " seconds.  Good job!";
+            } else if (t >= 60 && t < 3600) {
+              document.getElementById("endGame").textContent = "You have survived for " + minutes + " minutes and " + seconds + " seconds.  Good job!";
+            } else {
+              document.getElementById("endGame").textContent = "You have survived for " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds.  Excellent!";
+            }
+          } else {
+            if (obst2.x <= 0) {
+              obst2.svgEquiv.setAttribute("visibility", "hidden");
+              obst2.setPos();
+            } else {
+              setTimeout(function() {
+              obst2.move();
+              }, 50);
+            }
+          }
+        }
+        obst3.move = function() {
+          obst3.x -= obst3.v;
+          obst3.svgEquiv.setAttribute("cx", obst3.x);
+          // Collision handler
+          if ((pcx - obst3.x) * (pcx - obst3.x) + (pcy - obst3.y) * (pcy - obst3.y) <= (75 + obst3.r) * (75 + obst3.r)) {
+            // If player collides with Obstacle 3, end the game
+            player.group.setAttribute("visibility", "hidden");
+            obst1.svgEquiv.setAttribute("visibility", "hidden");
+            obst2.svgEquiv.setAttribute("visibility", "hidden");
+            obst3.svgEquiv.setAttribute("visibility", "hidden");
+            clearTimeout(timeInterval);
+            player.jump = function() {return undefined;}
+            if (t < 60) {
+              document.getElementById("endGame").textContent = "You have survived for " + seconds + " seconds.  Good job!";
+            } else if (t >= 60 && t < 3600) {
+              document.getElementById("endGame").textContent = "You have survived for " + minutes + " minutes and " + seconds + " seconds.  Good job!";
+            } else {
+              document.getElementById("endGame").textContent = "You have survived for " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds.  Excellent!";
+            }
+          } else {
+            if (obst3.x <= 0) {
+              obst3.svgEquiv.setAttribute("visibility", "hidden");
+              obst3.setPos();
+            } else {
+              setTimeout(function() {
+              obst3.move();
+              }, 50);
+            }
+          }
+        }
+        obst1.setPos();
+        obst2.setPos();
+        obst3.setPos();
       }
 
-      function Obstacle(svgEquiv) {
+      function timer() {
+        seconds = t;
+        minutes = 0;
+        hours = 0;
+        if (t < 60) {
+          document.getElementById("timer").textContent = "Time: " + seconds + " seconds";
+        } else if (t >= 60 && t < 3600) {
+          while (seconds >= 60) {
+            seconds -= 60;
+            minutes++;
+          }
+          document.getElementById("timer").textContent = "Time: " + minutes + " minutes " + seconds + " seconds";
+        } else {
+          while (seconds >= 60) {
+            seconds -= 60;
+            minutes++;
+          }
+          while (minutes >= 60) {
+            minutes -= 60;
+            hours++;
+          }
+          document.getElementById("timer").textContent = "Time: " + hours + " hours, " + minutes + " minutes and " + seconds + " seconds";
+        }
+        t++;
+        timeInterval = setTimeout(function() {
+          timer();
+        }, 1000);
+      }
+
+      function Obstacle(svgEquiv, v) {
         this.svgEquiv = svgEquiv;
         this.r = parseInt(this.svgEquiv.getAttribute("r"));
+        this.x = parseInt(this.svgEquiv.getAttribute("cx"));
+        this.y = parseInt(this.svgEquiv.getAttribute("cy"));
+        this.v = v;
       }
 
       function verify() {
@@ -75,6 +227,7 @@
             }
           };
           init();
+          timer();
         }
       }
 
@@ -93,14 +246,15 @@
     (c) Bill.  All rights reserved.
   -->
   <text x="350" y="100" style="font-size: 50px; fill: black;">Press Up Key to Jump Over Obstacles</text>
-  <text id="timer" x="1200" y="100" style="font-size: 25px; fill: black;">Time: x seconds</text>
+  <text id="timer" x="500" y="150" style="font-size: 25px; fill: black;">Time: x seconds</text>
+  <text id="endGame" x="350" y="600" style="font-size: 37.5px; fill: black;"></text>
   <g id="player">
     <!-- Haha, super simple SVG Character -->
     <circle id="playerHead" cx="100" cy="575" r="75" style="fill: #ffe9b3; stroke: black;" />
     <circle cx="125" cy="545" r="8" style="fill: black; stroke: black;" />
     <path d="M 150 615 L 100 615" style="stroke: black;" />
   </g>
-  <circle id="obst1" cx="1250" cy="600" r="50" style="fill: red; stroke: black;" />
-  <circle id="obst2" cx="1250" cy="600" r="50" style="fill: blue; stroke: black;" />
-  <circle id="obst3" cx="1250" cy="600" r="50" style="fill: green; stroke: black;" />
+  <circle id="obst1" cx="1250" cy="600" r="50" style="fill: red; stroke: black;" visibility="hidden" />
+  <circle id="obst2" cx="1250" cy="600" r="50" style="fill: blue; stroke: black;" visibility="hidden" />
+  <circle id="obst3" cx="1250" cy="600" r="50" style="fill: green; stroke: black;" visibility="hidden" />
 </svg>
