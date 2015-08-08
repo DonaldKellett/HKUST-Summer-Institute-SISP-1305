@@ -1,7 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="background-color: rgb(5, 234, 255);" onload="verify()">
+  <title>Project Prototype</title>
   <!--
     proto.svg
-    Game Prototype
+    Project Prototype
     For Testing Purposes Only
     (c) HKUST Summer Institute SISP 1305 Group 1.  All rights reserved.
   -->
@@ -13,19 +14,59 @@
   -->
   <script>
     <![CDATA[
+      "use strict";
       /*
         JS Code for proto.svg
         Created by Donald Leung
         (c) Donald Leung.  All rights reserved.
       */
 
-      var ur;
+      var i, ur, pox, poy, pcx, pcy, player, pTranslate;
 
       function verify() {
         ur = prompt("Please enter password to continue.");
         if (ur !== "sisp1305g1") {
           alert("You will be returned to the homepage.");
           window.location = "http://donaldkellett.github.io/HKUST-Summer-Institute-SISP-1305";
+        } else {
+          pox = document.getElementById("playerHead").getAttribute("cx");
+          poy = document.getElementById("playerHead").getAttribute("cy");
+          player = {
+            isJumping: false,
+            group: document.getElementById("player"),
+            jump: function() {
+              this.isJumping = true;
+              pTranslate = 0;
+              for (i = 0; i < 30; i++) {
+                setTimeout(function() {
+                  pTranslate -= 10;
+                  player.group.setAttribute("transform", "translate(0 " + pTranslate + ")");
+                  pcx = pox;
+                  pcy = parseInt(poy) + pTranslate;
+                  // alert("("+pcx+","+pcy+")");
+                }, 50 * i);
+              }
+              for (i = 0; i < 30; i++) {
+                setTimeout(function() {
+                  pTranslate += 10;
+                  player.group.setAttribute("transform", "translate(0 " + pTranslate + ")");
+                  pcx = pox;
+                  pcy = parseInt(poy) + pTranslate;
+                  // alert("("+pcx+","+pcy+")");
+                }, 50 * i + 1500);
+              }
+              setTimeout(function() {
+                player.isJumping = false;
+              }, 3000);
+            }
+          };
+        }
+      }
+
+      document.onkeydown = function() {
+        if (event.keyCode == 38 && player.isJumping == false) {
+          player.jump();
+          // alert(event.keyCode);
         }
       }
     ]]>
@@ -36,13 +77,15 @@
     Would be handled by Bill
     (c) Bill.  All rights reserved.
   -->
+  <text x="350" y="100" style="font-size: 50px; fill: black;">Press Up Key to Jump Over Obstacles</text>
+  <text id="timer" x="1200" y="100" style="font-size: 25px; fill: black;">Time: x seconds</text>
   <g id="player">
     <!-- Haha, super simple SVG Character -->
-    <circle cx="100" cy="575" r="75" style="fill: #ffe9b3; stroke: black;" />
+    <circle id="playerHead" cx="100" cy="575" r="75" style="fill: #ffe9b3; stroke: black;" />
     <circle cx="125" cy="545" r="8" style="fill: black; stroke: black;" />
     <path d="M 150 615 L 100 615" style="stroke: black;" />
   </g>
-  <circle class="obst" cx="1250" cy="600" r="50" style="fill: red; stroke: black;" />
-  <circle class="obst" cx="1250" cy="600" r="50" style="fill: blue; stroke: black;" />
-  <circle class="obst" cx="1250" cy="600" r="50" style="fill: green; stroke: black;" />
+  <circle id="obst1" cx="1250" cy="600" r="50" style="fill: red; stroke: black;" />
+  <circle id="obst2" cx="1250" cy="600" r="50" style="fill: blue; stroke: black;" />
+  <circle id="obst3" cx="1250" cy="600" r="50" style="fill: green; stroke: black;" />
 </svg>
