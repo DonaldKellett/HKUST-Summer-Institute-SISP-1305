@@ -21,7 +21,21 @@
         (c) Donald Leung.  All rights reserved.
       */
 
-      var i, ur, pox, poy, pcx, pcy, player, pTranslate;
+      var i, ur, pox, poy, pcx, pcy, player, pTranslate, obst1, obst2, obst3;
+
+      function init() {
+        obst1 = new Obstacle(document.getElementById("obst1"));
+        obst2 = new Obstacle(document.getElementById("obst2"));
+        obst3 = new Obstacle(document.getElementById("obst3"));
+        // alert(obst1.r);
+        // alert(obst2.r);
+        // alert(obst3.r);
+      }
+
+      function Obstacle(svgEquiv) {
+        this.svgEquiv = svgEquiv;
+        this.r = parseInt(this.svgEquiv.getAttribute("r"));
+      }
 
       function verify() {
         ur = prompt("Please enter password to continue.");
@@ -60,6 +74,7 @@
               }, 3000);
             }
           };
+          init();
         }
       }
 
