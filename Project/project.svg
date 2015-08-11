@@ -60,7 +60,7 @@
 				document.onkeydown = function(event) {
 					/*
 						Key Codes
-						------
+						---------
 						W = 87
 						A = 65
 						S = 83
