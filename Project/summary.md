@@ -10,7 +10,13 @@ The main theme will not be revealed until the project is complete to avoid plagi
 
 ## My Comments
 
+### 07/08/15
+
 So, I never thought that we would already be asked to start planning our project as early as ```07/08/15```.  Maybe that's a good thing - to create a decent project, at least a week's preparation work is necessary.  I am glad to be able to create the Javascript code for this game - it is fun yet challenging.
+
+### 11/08/15
+
+Our group has finally officially started creating the long-awaited project.  At first, there were a lot of ideas as to what the game should be like (I won't mention it here since time is already running out) but in the end we decided that it would be a dodge-and-shoot game.  More details will be revealed in the future.
 
 ## Collaborators
 

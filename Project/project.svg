@@ -1,0 +1,236 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" width="1000" height="800" style="background-Color: black;">
+	<!--
+		Zombie Massacre
+		HKUST Summer Institute 2015 SISP 1305 Group 1 Project
+
+		(c) 2015 SISP 1305 Group 1.  All rights reserved.
+	-->
+	<title>Zombie Massacre</title>
+	<script>
+		<![CDATA[
+			var player;
+			var normalZombie1;
+			var hardZombie1;
+			var minionZombie1;
+			var bossZombie;
+
+			function showInstructions() {
+				document.getElementById("startButton").setAttribute("onmousedown", "");
+				document.getElementById("startScreen").setAttribute("visibility", "hidden");
+				document.getElementById("instructions").setAttribute("visibility", "visible");
+				document.getElementById("buttonClick").play();
+			}
+			function init() {
+				document.getElementById("proceed").setAttribute("onmousedown", "");
+				document.getElementById("instructions").setAttribute("visibility", "hidden");
+				document.getElementById("gameScene").setAttribute("visibility", "visible");
+				document.getElementById("buttonClick").play();
+				startGame();
+			}
+			function startGame() {
+				player = {
+					x: 500,
+					y: 400,
+					svgEquiv: document.getElementById("player"),
+					move: function(dir) {
+						switch (dir) {
+							case "left":
+							player.x -= 15;
+							break;
+							case "right":
+							player.x += 15;
+							break;
+							case "up":
+							player.y -= 15;
+							break;
+							case "down":
+							player.y += 15;
+							break;
+							default:
+							alert("ERROR!  THIS DIRECTION DOES NOT EXIST!  CHECK YOUR CODE!");
+						}
+						player.svgEquiv.setAttribute("transform", "translate("+player.x+" "+player.y+")");
+					},
+					init: function() {
+						player.svgEquiv.setAttribute("transform", "translate("+player.x+" "+player.y+")");
+						player.svgEquiv.setAttribute("visibility", "visible");
+					}
+				};
+				player.init();
+				document.onkeydown = function(event) {
+					/*
+						Key Codes
+						------
+						W = 87
+						A = 65
+						S = 83
+						D = 68
+					*/
+					switch (event.keyCode) {
+						case 87:
+						player.move("up");
+						break;
+						case 65:
+						player.move("left");
+						break;
+						case 83:
+						player.move("down");
+						break;
+						case 68:
+						player.move("right");
+						break;
+					}
+				}
+				function Zombie(svgEquiv, x, y) {
+					this.svgEquiv = svgEquiv;
+					this.x = x;
+					this.y = y;
+					this.stepMoves = 200;
+					this.currentStepCount = 0;
+					this.stepX = 0;
+					this.stepY = 0;
+					this.stepTimer = function() {
+						void(0);
+					}
+					this.startPos = function() {
+						this.svgEquiv.setAttribute("transform", "translate("+this.x+" "+this.y+")");
+						this.svgEquiv.setAttribute("visibility", "visible");
+					}
+				}
+				normalZombie1 = new Zombie(document.getElementById("normalZombie1"), 0, 400);
+				normalZombie1.startPos();
+				normalZombie1.targetPlayer = function() {
+					normalZombie1.stepX = (player.x - normalZombie1.x) / normalZombie1.stepMoves;
+					normalZombie1.stepY = (player.y - normalZombie1.y) / normalZombie1.stepMoves;
+					normalZombie1.currentStepCount = 0;
+					normalZombie1.stepTimer = setTimeout(function() {
+						normalZombie1.move();
+					}, 10);
+				}
+				normalZombie1.move = function() {
+					void(0); // INCOMPLETE!!!
+				}
+				normalZombie1.targetPlayer();
+			}
+		]]>
+	</script>
+	<defs>
+		<linearGradient id="buttonGrad">
+			<stop offset="0" style="stop-color: rgb(255, 154, 139);"></stop>
+			<stop offset="0.5" style="stop-color: red;"></stop>
+			<stop offset="1" style="stop-color: rgb(255, 154, 139);"></stop>
+		</linearGradient>
+	</defs>
+	<g id="startScreen" visibility="visible">
+		<text x="125" y="150" style="font-Size: 75px; fill: red;">ZOMBIE MASSACRE</text>
+		<g id="startButton" onmousedown="showInstructions()">
+			<rect x="350" y="360" width="300" height="80" style="fill: url(#buttonGrad);"></rect>
+			<text x="375" y="410" style="font-Size: 40px; fill: black;">START GAME</text>
+		</g>
+	</g>
+	<g id="instructions" visibility="hidden">
+		<text x="300" y="100" style="font-Size: 50px; fill: red;">INSTRUCTIONS</text>
+		<text x="100" y="150" style="font-Size: 25px; fill: red;">1. Use the WASD keys to move around.</text>
+		<text x="100" y="200" style="font-Size: 25px; fill: red;">2. Avoid incoming zombies.  Do NOT touch them.</text>
+		<text x="100" y="250" style="font-Size: 25px; fill: red;">3. You should also shoot and kill them zombies by clicking on them.</text>
+		<text x="100" y="300" style="font-Size: 25px; fill: red;">4. Some zombies may take more than one hit to kill them.</text>
+		<text x="100" y="350" style="font-Size: 25px; fill: red;">5. In the end there is a BOSS.  Keep shooting it to kill it.  A health bar will show its health.</text>
+		<g id="proceed" onmousedown="init()">
+			<rect x="350" y="570" width="300" height="60" style="fill: url(#buttonGrad);"></rect>
+			<text x="375" y="610" style="font-Size: 20px; fill: black;">I UNDERSTAND, CONTINUE</text>
+		</g>
+	</g>
+	<g id="gameScene" visibility="hidden">
+		<g id="horizontalRoad">
+			<rect x="0" y="350" width="1000" height="100" style="fill: grey;"></rect>
+			<rect x="0" y="390" width="100" height="20" style="fill: white;"></rect>
+			<rect x="150" y="390" width="100" height="20" style="fill: white;"></rect>
+			<rect x="300" y="390" width="100" height="20" style="fill: white;"></rect>
+			<rect x="600" y="390" width="100" height="20" style="fill: white;"></rect>
+			<rect x="750" y="390" width="100" height="20" style="fill: white;"></rect>
+			<rect x="900" y="390" width="100" height="20" style="fill: white;"></rect>
+		</g>
+		<g id="verticalRoad">
+			<rect x="450" y="0" width="100" height="1000" style="fill: grey;"></rect>
+			<rect x="490" y="0" width="20" height="100" style="fill: white;"></rect>
+			<rect x="490" y="150" width="20" height="100" style="fill: white;"></rect>
+			<rect x="490" y="300" width="20" height="100" style="fill: white;"></rect>
+			<rect x="490" y="450" width="20" height="100" style="fill: white;"></rect>
+			<rect x="490" y="600" width="20" height="100" style="fill: white;"></rect>
+			<rect x="490" y="750" width="20" height="100" style="fill: white;"></rect>
+		</g>
+		<g id="player" visibility="hidden">
+			<g id="playerTransform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: #ffe9b3; stroke: #ffe9b3;"></circle>
+				<ellipse cx="-15" cy="-20" rx="10" ry="20" style="fill: white; stroke: black;"></ellipse>
+				<ellipse cx="15" cy="-20" rx="10" ry="20" style="fill: white; stroke: black;"></ellipse>
+				<circle cx="-15" cy="-5" r="5" style="fill: black;">
+					<animateTransform attributeName="transform" type="translate" additive="sum" begin="0s" dur="3s" values="0 0; -5 -15; 0 -30; 5 -15; 0 0" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-5" r="5" style="fill: black;">
+					<animateTransform attributeName="transform" type="translate" additive="sum" begin="0s" dur="3s" values="0 0; -5 -15; 0 -30; 5 -15; 0 0" repeatCount="indefinite" />
+				</circle>
+				<path d="M -20 20 L -18 25 L -16 29 L -14 32 L -12 35 L -10 37 L -5 39 L 0 40 L 5 39 L 10 37 L 12 35 L 14 32 L 16 29 L 18 25 L 20 20 z" style="fill: red; stroke: black;"></path>
+			</g>
+		</g>
+		<g id="normalZombie1" visibility="hidden">
+			<g id="normalZombie1Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: #A7FFA7; stroke: #A7FFA7;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: red; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="hardZombie1" visibility="hidden">
+			<g id="hardZombie1Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: red; stroke: red;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: black; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="minionZombie1" visibility="hidden">
+			<g id="minionZombie1Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: yellow; stroke: yellow;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="0.5s" values="0 -15 -22.5; 360 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="0.5s" values="180 15 -22.5; 540 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: red; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="bossZombie" visibility="hidden">
+			<g id="bossZombieTransform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="200" style="fill: green; stroke: green;"></circle>
+				<circle cx="-60" cy="-90" r="40" style="fill: red; stroke: black;"></circle>
+				<circle cx="60" cy="-90" r="40" style="fill: red; stroke: black;"></circle>
+				<circle cx="-60" cy="-70" r="20" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="1s" values="0 -60 -90; 360 -60 -90" repeatCount="indefinite" />
+				</circle>
+				<circle cx="60" cy="-70" r="20" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="1s" values="0 60 -90; 360 60 -90" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="100" r="70" style="fill: black; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+	</g>
+	<html:audio src="assets/background.ogg" id="backgroundMusic" autoplay="autoplay" loop="loop"></html:audio>
+	<html:audio src="assets/button-click.ogg" id="buttonClick"></html:audio>
+	<html:audio src="assets/gunshot.ogg" id="gunshotSFX"></html:audio>
+</svg>
