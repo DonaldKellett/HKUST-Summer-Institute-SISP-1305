@@ -11,7 +11,7 @@
 			"use strict";
 			var player;
 			var normalZombie1, normalZombie2, normalZombie3, normalZombie4, normalZombiesLeft = 4;
-			var hardZombie1, hardZombie2, hardZombie3, hardZombie4, hardZombiesLeft = 1;
+			var hardZombie1, hardZombie2, hardZombie3, hardZombie4, hardZombiesLeft = 2;
 			var minionZombie1;
 			var bossZombie;
 
@@ -136,6 +136,9 @@
 							if (hardZombie1 !== undefined) {
 								hardZombie1.svgEquiv.setAttribute("visibility", "hidden");
 							}
+							if (hardZombie2 !== undefined) {
+								hardZombie2.svgEquiv.setAttribute("visibility", "hidden");
+							}
 							// Hide Player (of course :p)
 							if (player !== undefined) {
 								player.svgEquiv.setAttribute("visibility", "hidden");
@@ -155,6 +158,9 @@
 							}
 							if (hardZombie1 !== undefined) {
 								hardZombie1.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (hardZombie2 !== undefined) {
+								hardZombie2.svgEquiv.setAttribute("onmousedown", "");
 							}
 							// Disable Keyboard Controls
 							document.onkeydown = function(event) {
@@ -176,12 +182,16 @@
 							if (hardZombie1 !== undefined) {
 								clearInterval(hardZombie1.stepTimer);
 							}
+							if (hardZombie2 !== undefined) {
+								clearInterval(hardZombie2.stepTimer);
+							}
 							// Undefine Everything
 							normalZombie1 = undefined;
 							normalZombie2 = undefined;
 							normalZombie3 = undefined;
 							normalZombie4 = undefined;
 							hardZombie1 = undefined;
+							hardZombie2 = undefined;
 							player = undefined;
 							// Hide Game Screen and show Game Over Screen
 							document.getElementById("gameScene").setAttribute("visibility", "hidden");
@@ -402,6 +412,46 @@
 						}
 					}
 
+					hardZombie2 = new Zombie(document.getElementById("hardZombie2"), 1000, 0, 50, 3, 250);
+					hardZombie2.startPos();
+					hardZombie2.targetPlayer = function() {
+						hardZombie2.stepX = (player.x - hardZombie2.x) / hardZombie2.stepMoves;
+						hardZombie2.stepY = (player.y - hardZombie2.y) / hardZombie2.stepMoves;
+						hardZombie2.currentStepCount = 0;
+						hardZombie2.stepTimer = setTimeout(function() {
+							hardZombie2.move();
+						}, 10);
+					}
+					hardZombie2.move = function() {
+						hardZombie2.x += hardZombie2.stepX;
+						hardZombie2.y += hardZombie2.stepY;
+						hardZombie2.svgEquiv.setAttribute("transform", "translate("+hardZombie2.x+" "+hardZombie2.y+")");
+						hardZombie2.currentStepCount ++;
+						if (hardZombie2.currentStepCount < hardZombie2.stepMoves) {
+							hardZombie2.stepTimer = setTimeout(function() {
+								hardZombie2.move();
+							}, 10);
+						} else {
+							hardZombie2.stepTimer = setTimeout(function() {
+								hardZombie2.targetPlayer();
+							}, 10);
+						}
+						hardZombie2.detectCollisionWithPlayer();
+					}
+					hardZombie2.loseHealth = function() {
+						hardZombie2.health --;
+						document.getElementById("gunshotSFX").play();
+						if (hardZombie2.health <= 0) {
+							// Zombie dies.  Disable Zombie
+							hardZombie2.svgEquiv.setAttribute("visibility", "hidden");
+							hardZombie2.svgEquiv.setAttribute("onmousedown", "");
+							clearInterval(hardZombie2.stepTimer);
+							hardZombie2 = undefined;
+							hardZombiesLeft --;
+							checkHardZombiesNum();
+						}
+					}
+
 					function checkHardZombiesNum() {
 						if (hardZombiesLeft <= 0) {
 							releaseBoss();
@@ -413,6 +463,9 @@
 
 					hardZombie1.svgEquiv.setAttribute("onmousedown", "hardZombie1.loseHealth()");
 					hardZombie1.targetPlayer();
+
+					hardZombie2.svgEquiv.setAttribute("onmousedown", "hardZombie2.loseHealth()");
+					hardZombie2.targetPlayer();
 				}
 
 				normalZombie1.svgEquiv.setAttribute("onmousedown", "normalZombie1.loseHealth()");
