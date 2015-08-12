@@ -690,10 +690,12 @@
 								document.getElementById("gunshotSFX").play();
 								if (minionZombie1.health <= 0) {
 									// Minion Zombie Respawns
-									minionZombie1.svgEquiv.setAttribute("visibility", "hidden");
-									minionZombie1.svgEquiv.setAttribute("onmousedown", "");
+									minionZombie1.health = 1;
+									minionZombie1.x = 1000 * Math.random();
+									minionZombie1.y = 0;
+									minionZombie1.startPos();
 									clearInterval(minionZombie1.stepTimer);
-									minionZombie1 = undefined;
+									minionZombie1.targetPlayer();
 								}
 							}
 
