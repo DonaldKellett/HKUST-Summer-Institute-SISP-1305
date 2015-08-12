@@ -145,6 +145,9 @@
 							if (hardZombie4 !== undefined) {
 								hardZombie4.svgEquiv.setAttribute("visibility", "hidden");
 							}
+							if (bossZombie !== undefined) {
+								bossZombie.svgEquiv.setAttribute("visibility", "hidden");
+							}
 							// Hide Player (of course :p)
 							if (player !== undefined) {
 								player.svgEquiv.setAttribute("visibility", "hidden");
@@ -173,6 +176,9 @@
 							}
 							if (hardZombie4 !== undefined) {
 								hardZombie4.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (bossZombie !== undefined) {
+								bossZombie.svgEquiv.setAttribute("onmousedown", "");
 							}
 							// Disable Keyboard Controls
 							document.onkeydown = function(event) {
@@ -203,6 +209,9 @@
 							if (hardZombie4 !== undefined) {
 								clearInterval(hardZombie4.stepTimer);
 							}
+							if (bossZombie !== undefined) {
+								clearInterval(bossZombie.stepTimer);
+							}
 							// Undefine Everything
 							normalZombie1 = undefined;
 							normalZombie2 = undefined;
@@ -212,6 +221,7 @@
 							hardZombie2 = undefined;
 							hardZombie3 = undefined;
 							hardZombie4 = undefined;
+							bossZombie = undefined;
 							player = undefined;
 							// Hide Game Screen and show Game Over Screen
 							document.getElementById("gameScene").setAttribute("visibility", "hidden");
@@ -558,7 +568,56 @@
 						}
 					}
 					function releaseBoss() {
-						alert("All hard zombies killed!  Release the BOSS!");  // INCOMPLETE
+						bossZombie = new Zombie(document.getElementById("bossZombie"), 500, -200, 200, 60, 500);
+						bossZombie.startPos();
+						bossZombie.targetPlayer = function() {
+							bossZombie.stepX = (player.x - bossZombie.x) / bossZombie.stepMoves;
+							bossZombie.stepY = (player.y - bossZombie.y) / bossZombie.stepMoves;
+							bossZombie.currentStepCount = 0;
+							bossZombie.stepTimer = setTimeout(function() {
+								bossZombie.move();
+							}, 10);
+						}
+						bossZombie.move = function() {
+							bossZombie.x += bossZombie.stepX;
+							bossZombie.y += bossZombie.stepY;
+							bossZombie.svgEquiv.setAttribute("transform", "translate("+bossZombie.x+" "+bossZombie.y+")");
+							bossZombie.currentStepCount ++;
+							if (bossZombie.currentStepCount < bossZombie.stepMoves) {
+								bossZombie.stepTimer = setTimeout(function() {
+									bossZombie.move();
+								}, 10);
+							} else {
+								bossZombie.stepTimer = setTimeout(function() {
+									bossZombie.targetPlayer();
+								}, 10);
+							}
+							bossZombie.detectCollisionWithPlayer();
+						}
+						bossZombie.loseHealth = function() {
+							bossZombie.health --;
+							document.getElementById("gunshotSFX").play();
+							if (bossZombie.health <= 0) {
+								// Zombie dies.  Disable Zombie
+								bossZombie.svgEquiv.setAttribute("visibility", "hidden");
+								bossZombie.svgEquiv.setAttribute("onmousedown", "");
+								clearInterval(bossZombie.stepTimer);
+								bossZombie = undefined;
+								winGame();
+							}
+						}
+
+						function winGame() {
+							alert("You win the game!");  // INCOMPLETE
+						}
+
+						bossZombie.svgEquiv.setAttribute("onmousedown", "bossZombie.loseHealth()");
+						bossZombie.targetPlayer();
+						bossZombie.summonMinions = function() {
+							// This is the function where the boss summons his Minions :p
+							alert("Minions Summoned!");  // INCOMPLETE
+						}
+						bossZombie.summonMinions();
 					}
 
 					hardZombie1.svgEquiv.setAttribute("onmousedown", "hardZombie1.loseHealth()");
