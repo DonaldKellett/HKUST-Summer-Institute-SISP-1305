@@ -148,6 +148,8 @@
 							if (bossZombie !== undefined) {
 								bossZombie.svgEquiv.setAttribute("visibility", "hidden");
 							}
+							// Hide Health Bar of Boss
+							document.getElementById("bossHealthBar").setAttribute("visibility", "hidden");
 							// Hide Player (of course :p)
 							if (player !== undefined) {
 								player.svgEquiv.setAttribute("visibility", "hidden");
@@ -597,6 +599,7 @@
 						bossZombie.loseHealth = function() {
 							bossZombie.health --;
 							document.getElementById("gunshotSFX").play();
+							document.getElementById("actualBossHealth").setAttribute("width", 10 * bossZombie.health);
 							if (bossZombie.health <= 0) {
 								// Zombie dies.  Disable Zombie
 								bossZombie.svgEquiv.setAttribute("visibility", "hidden");
@@ -608,11 +611,13 @@
 						}
 
 						function winGame() {
+							document.getElementById("bossHealthBar").setAttribute("visibility", "hidden");
 							alert("You win the game!");  // INCOMPLETE
 						}
 
 						bossZombie.svgEquiv.setAttribute("onmousedown", "bossZombie.loseHealth()");
 						bossZombie.targetPlayer();
+						document.getElementById("bossHealthBar").setAttribute("visibility", "visible");
 						bossZombie.summonMinions = function() {
 							// This is the function where the boss summons his Minions :p
 							alert("Minions Summoned!");  // INCOMPLETE
@@ -845,6 +850,10 @@
 				</circle>
 				<circle cx="0" cy="100" r="70" style="fill: black; stroke: black; stroke-width: 5;"></circle>
 			</g>
+		</g>
+		<g id="bossHealthBar" visibility="hidden">
+			<rect x="200" y="50" width="600" height="50" style="stroke: black; opacity: 0.25;"></rect>
+			<rect x="200" y="50" width="600" height="50" style="stroke: black; fill: green;" id="actualBossHealth"></rect>
 		</g>
 	</g>
 	<g id="gameOver" visibility="hidden">
