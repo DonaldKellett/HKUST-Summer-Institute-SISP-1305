@@ -12,7 +12,7 @@
 			var player;
 			var normalZombie1, normalZombie2, normalZombie3, normalZombie4, normalZombiesLeft = 4;
 			var hardZombie1, hardZombie2, hardZombie3, hardZombie4, hardZombiesLeft = 4;
-			var minionZombie1;
+			var minionZombie1, minionZombie2;
 			var bossZombie;
 
 			function showInstructions() {
@@ -148,6 +148,9 @@
 							if (bossZombie !== undefined) {
 								bossZombie.svgEquiv.setAttribute("visibility", "hidden");
 							}
+							if (minionZombie1 !== undefined) {
+								minionZombie1.svgEquiv.setAttribute("visibility", "hidden");
+							}
 							// Hide Health Bar of Boss
 							document.getElementById("bossHealthBar").setAttribute("visibility", "hidden");
 							// Hide Player (of course :p)
@@ -182,6 +185,9 @@
 							if (bossZombie !== undefined) {
 								bossZombie.svgEquiv.setAttribute("onmousedown", "");
 							}
+							if (minionZombie1 !== undefined) {
+								minionZombie1.svgEquiv.setAttribute("onmousedown", "");
+							}
 							// Disable Keyboard Controls
 							document.onkeydown = function(event) {
 								void(0);
@@ -214,6 +220,9 @@
 							if (bossZombie !== undefined) {
 								clearInterval(bossZombie.stepTimer);
 							}
+							if (minionZombie1 !== undefined) {
+								clearInterval(minionZombie1.stepTimer);
+							}
 							// Undefine Everything
 							normalZombie1 = undefined;
 							normalZombie2 = undefined;
@@ -224,6 +233,7 @@
 							hardZombie3 = undefined;
 							hardZombie4 = undefined;
 							bossZombie = undefined;
+							minionZombie1 = undefined;
 							player = undefined;
 							// Hide Game Screen and show Game Over Screen
 							document.getElementById("gameScene").setAttribute("visibility", "hidden");
@@ -612,7 +622,36 @@
 
 						function winGame() {
 							document.getElementById("bossHealthBar").setAttribute("visibility", "hidden");
-							alert("You win the game!");  // INCOMPLETE
+							// Hide Minions
+							if (minionZombie1 !== undefined) {
+								minionZombie1.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							// Hide Player
+							if (player !== undefined) {
+								player.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							// Disable Minion onmousedown events
+							if (minionZombie1 !== undefined) {
+								minionZombie1.svgEquiv.setAttribute("onmousedown", "");
+							}
+							// Disable Keyboard Controls
+							document.onkeydown = function(event) {
+								void(0);
+							}
+							// Clear Minion Intervals :p
+							if (minionZombie1 !== undefined) {
+								clearInterval(minionZombie1.stepTimer);
+							}
+							// Undefine Minions and Player
+							minionZombie1 = undefined;
+							player = undefined;
+							// Hide Game Screen and show Winning Screen
+							document.getElementById("gameScene").setAttribute("visibility", "hidden");
+							document.getElementById("gameOver").setAttribute("visibility", "visible");
+							// Player wins
+							document.getElementById("gameOverWinText").setAttribute("visibility", "visible");
+							// Enable Restart Button
+							document.getElementById("gameOverRestart").setAttribute("onmousedown", "location.reload()");
 						}
 
 						bossZombie.svgEquiv.setAttribute("onmousedown", "bossZombie.loseHealth()");
@@ -620,7 +659,46 @@
 						document.getElementById("bossHealthBar").setAttribute("visibility", "visible");
 						bossZombie.summonMinions = function() {
 							// This is the function where the boss summons his Minions :p
-							alert("Minions Summoned!");  // INCOMPLETE
+							minionZombie1 = new Zombie(document.getElementById("minionZombie1"), 1000 * Math.random(), 0, 50, 1, 250);
+							minionZombie1.startPos();
+							minionZombie1.targetPlayer = function() {
+								minionZombie1.stepX = (player.x - minionZombie1.x) / minionZombie1.stepMoves;
+								minionZombie1.stepY = (player.y - minionZombie1.y) / minionZombie1.stepMoves;
+								minionZombie1.currentStepCount = 0;
+								minionZombie1.stepTimer = setTimeout(function() {
+									minionZombie1.move();
+								}, 10);
+							}
+							minionZombie1.move = function() {
+								minionZombie1.x += minionZombie1.stepX;
+								minionZombie1.y += minionZombie1.stepY;
+								minionZombie1.svgEquiv.setAttribute("transform", "translate("+minionZombie1.x+" "+minionZombie1.y+")");
+								minionZombie1.currentStepCount ++;
+								if (minionZombie1.currentStepCount < minionZombie1.stepMoves) {
+									minionZombie1.stepTimer = setTimeout(function() {
+										minionZombie1.move();
+									}, 10);
+								} else {
+									minionZombie1.stepTimer = setTimeout(function() {
+										minionZombie1.targetPlayer();
+									}, 10);
+								}
+								minionZombie1.detectCollisionWithPlayer();
+							}
+							minionZombie1.loseHealth = function() {
+								minionZombie1.health --;
+								document.getElementById("gunshotSFX").play();
+								if (minionZombie1.health <= 0) {
+									// Minion Zombie Respawns
+									minionZombie1.svgEquiv.setAttribute("visibility", "hidden");
+									minionZombie1.svgEquiv.setAttribute("onmousedown", "");
+									clearInterval(minionZombie1.stepTimer);
+									minionZombie1 = undefined;
+								}
+							}
+
+							minionZombie1.svgEquiv.setAttribute("onmousedown", "minionZombie1.loseHealth()");
+							minionZombie1.targetPlayer();
 						}
 						bossZombie.summonMinions();
 					}
@@ -825,6 +903,20 @@
 		</g>
 		<g id="minionZombie1" visibility="hidden">
 			<g id="minionZombie1Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: yellow; stroke: yellow;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="0.5s" values="0 -15 -22.5; 360 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="0.5s" values="180 15 -22.5; 540 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: red; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="minionZombie2" visibility="hidden">
+			<g id="minionZombie2Transform" transform="translate(0 0)">
 				<circle cx="0" cy="0" r="50" style="fill: yellow; stroke: yellow;"></circle>
 				<circle cx="-15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
 				<circle cx="15" cy="-22.5" r="10" style="fill: white; stroke: black;"></circle>
