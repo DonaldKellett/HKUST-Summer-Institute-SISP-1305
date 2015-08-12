@@ -120,103 +120,68 @@
 					}
 					this.detectCollisionWithPlayer = function() {
 						if ((this.x - player.x) * (this.x - player.x) + (this.y - player.y) * (this.y - player.y) <= (this.r + player.r) * (this.r + player.r)) {
-							// Collision!  Disable everything and show Game Over Screen
-							// Hide Normal Zombies
-							normalZombie1.svgEquiv.setAttribute("visibility", "hidden");
-							normalZombie2.svgEquiv.setAttribute("visibility", "hidden");
-							normalZombie3.svgEquiv.setAttribute("visibility", "hidden");
-							normalZombie4.svgEquiv.setAttribute("visibility", "hidden");
-							// Hide Hard Zombies
-							hardZombie1.svgEquiv.setAttribute("visibility", "hidden");
-							// hardZombie2.svgEquiv.setAttribute("visibility", "hidden");
-							// hardZombie3.svgEquiv.setAttribute("visibility", "hidden");
-							// hardZombie4.svgEquiv.setAttribute("visibility", "hidden");
-							// hardZombie5.svgEquiv.setAttribute("visibility", "hidden");
-							// hardZombie6.svgEquiv.setAttribute("visibility", "hidden");
-							// hardZombie7.svgEquiv.setAttribute("visibility", "hidden");
-							// hardZombie8.svgEquiv.setAttribute("visibility", "hidden");
-							// Hide Minion Zombies (Boss Battle)
-							// minionZombie1.svgEquiv.setAttribute("visibility", "hidden");
-							// minionZombie2.svgEquiv.setAttribute("visibility", "hidden");
-							// minionZombie3.svgEquiv.setAttribute("visibility", "hidden");
-							// minionZombie4.svgEquiv.setAttribute("visibility", "hidden");
-							// minionZombie5.svgEquiv.setAttribute("visibility", "hidden");
-							// minionZombie6.svgEquiv.setAttribute("visibility", "hidden");
-							// minionZombie7.svgEquiv.setAttribute("visibility", "hidden");
-							// minionZombie8.svgEquiv.setAttribute("visibility", "hidden");
-							// Hide Boss Zombie (Boss Battle)
-							// bossZombie.svgEquiv.setAttribute("visibility", "hidden");
+							// Hide Zombies
+							if (normalZombie1 !== undefined) {
+								normalZombie1.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (normalZombie2 !== undefined) {
+								normalZombie2.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (normalZombie3 !== undefined) {
+								normalZombie3.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (normalZombie4 !== undefined) {
+								normalZombie4.svgEquiv.setAttribute("visibility", "hidden");
+							}
+							if (hardZombie1 !== undefined) {
+								hardZombie1.svgEquiv.setAttribute("visibility", "hidden");
+							}
 							// Hide Player (of course :p)
-							player.svgEquiv.setAttribute("visibility", "hidden");
+							if (player !== undefined) {
+								player.svgEquiv.setAttribute("visibility", "hidden");
+							}
 							// Disable all onmousedown events
-							normalZombie1.svgEquiv.setAttribute("onmousedown", "");
-							normalZombie2.svgEquiv.setAttribute("onmousedown", "");
-							normalZombie3.svgEquiv.setAttribute("onmousedown", "");
-							normalZombie4.svgEquiv.setAttribute("onmousedown", "");
-							hardZombie1.svgEquiv.setAttribute("onmousedown", "");
-							// hardZombie2.svgEquiv.setAttribute("onmousedown", "");
-							// hardZombie3.svgEquiv.setAttribute("onmousedown", "");
-							// hardZombie4.svgEquiv.setAttribute("onmousedown", "");
-							// hardZombie5.svgEquiv.setAttribute("onmousedown", "");
-							// hardZombie6.svgEquiv.setAttribute("onmousedown", "");
-							// hardZombie7.svgEquiv.setAttribute("onmousedown", "");
-							// hardZombie8.svgEquiv.setAttribute("onmousedown", "");
-							// minionZombie1.svgEquiv.setAttribute("onmousedown", "");
-							// minionZombie2.svgEquiv.setAttribute("onmousedown", "");
-							// minionZombie3.svgEquiv.setAttribute("onmousedown", "");
-							// minionZombie4.svgEquiv.setAttribute("onmousedown", "");
-							// minionZombie5.svgEquiv.setAttribute("onmousedown", "");
-							// minionZombie6.svgEquiv.setAttribute("onmousedown", "");
-							// minionZombie7.svgEquiv.setAttribute("onmousedown", "");
-							// minionZombie8.svgEquiv.setAttribute("onmousedown", "");
-							// bossZombie.svgEquiv.setAttribute("onmousedown", "");
+							if (normalZombie1 !== undefined) {
+								normalZombie1.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (normalZombie2 !== undefined) {
+								normalZombie2.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (normalZombie3 !== undefined) {
+								normalZombie3.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (normalZombie4 !== undefined) {
+								normalZombie4.svgEquiv.setAttribute("onmousedown", "");
+							}
+							if (hardZombie1 !== undefined) {
+								hardZombie1.svgEquiv.setAttribute("onmousedown", "");
+							}
 							// Disable Keyboard Controls
 							document.onkeydown = function(event) {
 								void(0);
 							}
 							// Clear all intervals
-							clearInterval(normalZombie1.stepTimer);
-							clearInterval(normalZombie2.stepTimer);
-							clearInterval(normalZombie3.stepTimer);
-							clearInterval(normalZombie4.stepTimer);
-							clearInterval(hardZombie1.stepTimer);
-							// clearInterval(hardZombie2.stepTimer);
-							// clearInterval(hardZombie3.stepTimer);
-							// clearInterval(hardZombie4.stepTimer);
-							// clearInterval(hardZombie5.stepTimer);
-							// clearInterval(hardZombie6.stepTimer);
-							// clearInterval(hardZombie7.stepTimer);
-							// clearInterval(hardZombie8.stepTimer);
-							// clearInterval(minionZombie1.stepTimer);
-							// clearInterval(minionZombie2.stepTimer);
-							// clearInterval(minionZombie3.stepTimer);
-							// clearInterval(minionZombie4.stepTimer);
-							// clearInterval(minionZombie5.stepTimer);
-							// clearInterval(minionZombie6.stepTimer);
-							// clearInterval(minionZombie7.stepTimer);
-							// clearInterval(minionZombie8.stepTimer);
-							// And maybe something about the Boss here (add code here later)?
+							if (normalZombie1 !== undefined) {
+								clearInterval(normalZombie1.stepTimer);
+							}
+							if (normalZombie2 !== undefined) {
+								clearInterval(normalZombie2.stepTimer);
+							}
+							if (normalZombie3 !== undefined) {
+								clearInterval(normalZombie3.stepTimer);
+							}
+							if (normalZombie4 !== undefined) {
+								clearInterval(normalZombie4.stepTimer);
+							}
+							if (hardZombie1 !== undefined) {
+								clearInterval(hardZombie1.stepTimer);
+							}
 							// Undefine Everything
 							normalZombie1 = undefined;
 							normalZombie2 = undefined;
 							normalZombie3 = undefined;
 							normalZombie4 = undefined;
 							hardZombie1 = undefined;
-							// hardZombie2 = undefined;
-							// hardZombie3 = undefined;
-							// hardZombie4 = undefined;
-							// hardZombie5 = undefined;
-							// hardZombie6 = undefined;
-							// hardZombie7 = undefined;
-							// hardZombie8 = undefined;
-							// minionZombie1 = undefined;
-							// minionZombie2 = undefined;
-							// minionZombie3 = undefined;
-							// minionZombie4 = undefined;
-							// minionZombie5 = undefined;
-							// minionZombie6 = undefined;
-							// minionZombie7 = undefined;
-							// minionZombie8 = undefined;
 							player = undefined;
 							// Hide Game Screen and show Game Over Screen
 							document.getElementById("gameScene").setAttribute("visibility", "hidden");
@@ -581,6 +546,48 @@
 		</g>
 		<g id="hardZombie1" visibility="hidden">
 			<g id="hardZombie1Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: red; stroke: red;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: black; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="hardZombie2" visibility="hidden">
+			<g id="hardZombie2Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: red; stroke: red;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: black; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="hardZombie3" visibility="hidden">
+			<g id="hardZombie3Transform" transform="translate(0 0)">
+				<circle cx="0" cy="0" r="50" style="fill: red; stroke: red;"></circle>
+				<circle cx="-15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
+				<circle cx="-15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 -15 -22.5; 450 -15 -22.5; 270 -15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="15" cy="-17.5" r="5" style="fill: black; stroke: black;">
+					<animateTransform attributeName="transform" type="rotate" additive="sum" begin="0s" dur="2s" values="270 15 -22.5; 450 15 -22.5; 270 15 -22.5" repeatCount="indefinite" />
+				</circle>
+				<circle cx="0" cy="25" r="17.5" style="fill: black; stroke: black; stroke-width: 5;"></circle>
+			</g>
+		</g>
+		<g id="hardZombie4" visibility="hidden">
+			<g id="hardZombie4Transform" transform="translate(0 0)">
 				<circle cx="0" cy="0" r="50" style="fill: red; stroke: red;"></circle>
 				<circle cx="-15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
 				<circle cx="15" cy="-22.5" r="10" style="fill: #a7ffa7; stroke: black;"></circle>
