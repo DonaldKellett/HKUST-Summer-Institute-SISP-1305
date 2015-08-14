@@ -1,0 +1,36 @@
+<svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!--
+    character-alt.svg
+    The alternative (and better) version of my Lab 0 Homework Assignment
+    Notes: While the original homework assignment was written by scratch (i.e. I did not use any SVG editing tools or copy SVG code from any website), this alternative version was created on SVG Edit provided by Google.  It may look better, but I like the original version more because I put most effort into the original version
+
+    (c) Donald Leung.  All rights reserved.
+
+    P.S.  This alternative version can only be found on my USB and cannot be found on GitHub.  To see the original version, go to https://github.com/DonaldKellett/HKUST-Summer-Institute-SISP-1305/tree/gh-pages
+  -->
+ <g>
+  <title>Lab 0 Character (Homework) - Alternative Version (Created with SVG Edit)</title>
+  <rect fill="#ffd4aa" stroke="#000000" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="353" y="315" width="26" height="68" id="svg_13" transform="rotate(-19.6538 366 349)"/>
+  <rect stroke="#000000" transform="rotate(-19.2744 345.5 284)" id="svg_10" height="95.99612" width="46.13181" y="236.00194" x="322.43409" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#56aaff"/>
+  <rect fill="#ffd4aa" stroke="#000000" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="274" y="315" width="26" height="68" id="svg_11" transform="rotate(14.5345 287 349)"/>
+  <rect stroke="#000000" transform="rotate(11.5425 300.5 286.5)" id="svg_5" height="90.46347" width="46.5201" y="241.26826" x="277.23995" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#56aaff"/>
+  <rect fill="#007fff" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="370.20075" y="87.49971" width="29.59825" height="119" transform="rotate(-34.2869 385 147)" stroke="#000000" id="svg_17"/>
+  <rect fill="#007fff" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="245.20422" y="87.49571" width="29.59825" height="119" id="svg_16" transform="rotate(37.9297 260.003 146.996)" stroke="#000000"/>
+  <rect stroke="#000000" fill="#007fff" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="284" y="97.99998" width="76" height="152.00002" id="svg_15"/>
+  <circle stroke="#000000" id="svg_1" r="50.0966" cy="76.5" cx="321.50001" stroke-width="5" fill="#ffd4aa"/>
+  <ellipse stroke="#000000" id="svg_7" ry="8.5" rx="14.5" cy="62.5" cx="340.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#ffffff"/>
+  <ellipse stroke="#000000" ry="7.5" rx="14.5" id="svg_6" cy="62.5" cx="300.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#ffffff"/>
+  <circle stroke="#000000" id="svg_8" r="4.98528" cy="62.5" cx="300.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000"/>
+  <circle stroke="#000000" id="svg_9" r="5.98528" cy="63" cx="340.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000"/>
+  <path stroke="#000000" id="svg_12" d="m322.34445,67.65262l-8.91855,24.66698l11.14816,1.02779l-2.22961,-25.69476l0,-0.00002l0,0.00001z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" fill="#ffd4aa" transform="rotate(-7.32641 319 80.5)" stroke-width="2"/>
+  <path stroke-width="5" fill="none" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" id="svg_2" d="m289,95c1.16666,1 1.42404,1.69043 2,2.47917c0.46753,0.64027 0.60672,1.33911 1.03601,2.08482c0.39697,0.68956 1.48074,0.59799 2.048,1.15202c0.67371,0.65796 1.30106,1.19188 1.89066,1.70934c0.63776,0.55972 1.2254,1.04987 1.85867,1.74133c0.54761,0.59792 1.2735,0.72256 2.16666,0.83333c0.89923,0.11151 1.28235,0.95729 2.20001,1c0.89902,0.04184 1.79999,0 2.59998,0c0.90002,0 1.80005,-0.00539 2.70001,0c0.8894,0.00534 1.31628,0.72678 1.936,1c0.79056,0.34853 1.84512,-0.13733 2.51132,0.35266c0.68423,0.50325 1.45267,0.64734 2.35266,0.64734c0.90002,0 1.80002,0 2.70001,0c0.79999,0 1.70001,0 2.60001,0c0.89999,0 1.79999,0 2.69998,0c0.90002,0 1.80002,0 2.70001,0c0.79999,0 1.70001,0 2.60001,0c0.89999,0 1.79999,0 2.69998,0c0.90002,0 1.80002,0 2.70001,0c0.87866,0 1.7045,0 2.60001,0c0.89999,0 1.82321,0.24252 2.68399,-0.00133c0.77975,-0.22089 1.17984,-1.12769 1.76868,-1.64601c0.65054,-0.57266 1.45248,-0.86821 2.14734,-1.55266c0.60449,-0.59544 1.21146,-1.18584 1.71597,-1.99867c0.45706,-0.73639 1.099,-1.1889 1.65869,-1.82666c0.51746,-0.5896 1.10373,-1.25992 1.70932,-1.89067c0.54999,-0.57286 1.1626,-1.13779 1.74133,-1.65866c0.63788,-0.57407 0.97333,-1.22667 0.97467,-2.12534l0,-0.94284l-0.03601,-0.93182"/>
+  <ellipse fill="#000000" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="419.99999" cy="197.00001" rx="16.20372" ry="7.74604" transform="rotate(-32.1958 420 197)" stroke="#000000" id="svg_19"/>
+  <ellipse fill="#000000" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="223" cy="194" id="svg_18" rx="16.20372" ry="7.74604" transform="rotate(40.6013 223 194)" stroke="#000000"/>
+  <rect transform="rotate(40.6013 214 204)" stroke="#000000" fill="#ffd4aa" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="207" y="189" width="14" height="30" id="svg_20"/>
+  <rect transform="rotate(-34.5085 428 210)" stroke="#000000" fill="#ffd4aa" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="420" y="194" width="16" height="32" id="svg_21"/>
+  <circle id="svg_3" r="11.31371" cy="222" cx="198" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#ffd4aa"/>
+  <circle id="svg_4" r="12.04159" cy="228" cx="441" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#ffd4aa"/>
+  <ellipse fill="#56ffff" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="271" cy="385" rx="23.2895" ry="12.65904" transform="rotate(13.627 271 385)" stroke="#000000" id="svg_26"/>
+  <ellipse fill="#56ffff" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="385" cy="385.5" rx="23.2895" ry="12.65904" id="svg_25" transform="rotate(-16.6992 385 385.5)" stroke="#000000"/>
+ </g>
+</svg>
